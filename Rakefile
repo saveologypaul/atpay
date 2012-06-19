@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "atpay"
   gem.homepage = "http://github.com/saveologypaul/atpay"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Atpay.net payment class}
+  gem.description = %Q{Atpay.net payment class}
   gem.email = "pkruger@saveology.com"
   gem.authors = ["Paul Kruger"]
   # dependencies defined in Gemfile
