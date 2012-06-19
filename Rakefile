@@ -19,8 +19,8 @@ Jeweler::Tasks.new do |gem|
   gem.license = "MIT"
   gem.summary = %Q{Atpay.net payment class}
   gem.description = %Q{Atpay.net payment class}
-  gem.email = "pkruger@saveology.com"
-  gem.authors = ["Paul Kruger"]
+  gem.email = "devteam+pkruger+jtoyota@saveology.com"
+  gem.authors = ["Paul Kruger","Josh Toyota"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new

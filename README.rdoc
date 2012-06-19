@@ -1,6 +1,6 @@
 = atpay
 
-Description goes here.
+Atpay.net Payment Class.
 
 == Contributing to atpay
  
