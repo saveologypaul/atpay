@@ -11,6 +11,11 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
+desc "Open an irb session preloaded with this library"
+task :console do
+  sh "irb -rubygems -I lib -r atpay.rb"
+end
+
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
@@ -23,6 +28,8 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["Paul Kruger","Josh Toyota"]
   # dependencies defined in Gemfile
 end
+
+
 Jeweler::RubygemsDotOrgTasks.new
 
 require 'rake/testtask'
