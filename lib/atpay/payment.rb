@@ -10,18 +10,19 @@ class Payment
   attr_accessor :http_response, :success
   attr_accessor :dynamic_tags, :xml
   attr_accessor :username, :password, :host
+  attr_accessor :card, :order, :user, :recurring_payment
   def initialize(username, password, host)
     @username = username
     @password = password
     @host = host
   end
-  #def initialize(args)
-  #  @url = args[:url] || ENV['LITLE_API_URL']
-  #  @billing = args[:billing]
-  #  @order = args[:order]
-  #  @user = args[:user]
-  #  @card = args[:card]
-  #end
+
+  def charge(options = {})
+    @recurring_payment = options[:recurring_payment] ? options[:recurring_payment] : false
+    @card = options[:card]
+    @order = options[:order]
+    @user = options[:user]
+  end
 
   #def self.send(args)
   #  (litle = self.new(args)).send; litle
