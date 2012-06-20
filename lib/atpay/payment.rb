@@ -9,7 +9,12 @@ class Payment
   attr_accessor :billing, :order, :user, :card
   attr_accessor :http_response, :success
   attr_accessor :dynamic_tags, :xml
-
+  attr_accessor :username, :password, :host
+  def initialize(username, password, host)
+    @username = username
+    @password = password
+    @host = host
+  end
   #def initialize(args)
   #  @url = args[:url] || ENV['LITLE_API_URL']
   #  @billing = args[:billing]
@@ -18,9 +23,9 @@ class Payment
   #  @card = args[:card]
   #end
 
-  def self.send(args)
-    (litle = self.new(args)).send; litle
-  end
+  #def self.send(args)
+  #  (litle = self.new(args)).send; litle
+  #end
 
   def send
     fire_payment_request
