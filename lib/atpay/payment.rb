@@ -1,7 +1,10 @@
+require 'active_support/core_ext/hash'
 require 'rubygems'
 require 'crack'
 require 'httparty'
+require 'erb'
 require 'credit_card_validator'
+
 module ATPAY
   class Payment
     include HTTParty
@@ -27,6 +30,7 @@ module ATPAY
     attr_accessor :expiration_date
     #charge info
     attr_accessor :amount
+    attr_accessor :order_id
     attr_accessor :free_text
     #recurrring info
     attr_accessor :recurring_payment
@@ -54,7 +58,7 @@ module ATPAY
       @password = password
       @host = host
       @ip_address = '127.0.0.1'
-      @first_name = @last_name = @email = @address = @address2 = @city = @state = @zip = @phone = @name_on_card = @number = @credit_card_type = @cvv = @expiration_date = @free_text = @recurring_installment_interval_additional_info = @account_id = @sub_account_id = @service_expiry_method = @service_expiry_method_additional_info = @request = @response = @transaction_id = @org_options = @dynamic_tags = @xml = ''
+      @first_name = @last_name = @email = @address = @address2 = @city = @state = @zip = @phone = @name_on_card = @number = @credit_card_type = @cvv = @expiration_date = @free_text = @recurring_installment_interval_additional_info = @account_id = @sub_account_id = @service_expiry_method = @service_expiry_method_additional_info = @request = @response = @transaction_id = @org_options = @dynamic_tags = @xml = @order_id = ''
       @amount = @base_amount = @first_installment_amount = @initial_pre_auth_amount = @first_installment_interval = @recurring_amount = 0
       @recurring_payment = false
       @success = false
@@ -85,6 +89,7 @@ module ATPAY
 
       #charge info
       @amount = options[:amount] if options[:amount]
+      @order_id = options[:order_id] if options[:order_id]
       @free_text = options[:free_text] if options[:free_text]
 
       #recurring info
@@ -100,14 +105,14 @@ module ATPAY
       @sub_account_id = options[:sub_account_id] if options[:sub_account_id]
       @service_expiry_method = options[:service_expiry_method] if options[:service_expiry_method]
       @service_expiry_method_additional_info = options[:service_expiry_method_additional_info] if options[:service_expiry_method_additional_info]
-
+      @dynamic_tags = dynamic_tags
       #send_payment_request
       #handle_payment_response
       #successful?
     end
 
-    def credit_card_type2
-      type = CreditCardValidator::Validator.card_type(@card.number)
+    def credit_card_type
+      type = CreditCardValidator::Validator.card_type(@number)
       card_types = HashWithIndifferentAccess.new({
         :visa => 'Visa',
         :master_card => 'MasterCard',
@@ -118,7 +123,6 @@ module ATPAY
       card_types[type] || 'Empty'
     end
 
-private
     def send_payment_request
       fire_payment_request
       handle_payment_response
@@ -156,7 +160,7 @@ private
 
     def render_xml
       @dynamic_tags = dynamic_tags
-      template = File.open('./app/views/litle/request.xml.erb', 'r').read
+      template = File.open('request.xml.erb', 'r').read
       ERB.new(template).result(binding)
     end
 
@@ -207,7 +211,7 @@ private
           'RecurringInstallmentIntervalMethod' => 'Daily',
         },
       }
-      tags.update( recurring_tags[@billing.recurring?] )
+      tags.update( recurring_tags[recurring_payment] )
     end
   end
 end

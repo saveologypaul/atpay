@@ -3,7 +3,7 @@ source "http://rubygems.org"
 gem 'crack'
 gem 'httparty'
 gem 'credit_card_validator', :git => 'git://github.com/hashrocket/credit_card_validator.git'
-
+gem 'activesupport'
 group :development do
   gem "rspec", "~> 2.8.0"
   gem "rdoc", "~> 3.12"

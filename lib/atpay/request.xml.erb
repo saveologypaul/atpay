@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+      <RegularTransaction xmlns="http://transactions.atpay.net/webservices/ATPayTxWS/">
+        <RegularTransactionRequestPacket>
+          <AccessManagementFlag>false</AccessManagementFlag>
+          <AccessManagementType>None</AccessManagementType>
+          <BackOfficeFileId>0</BackOfficeFileId>
+          <BaseCurrencyType>USD</BaseCurrencyType>
+          <BillingPurpose>RegularCharge</BillingPurpose>
+          <CurrencyType>USD</CurrencyType>
+          <CurrencyConversionFee>0</CurrencyConversionFee>
+          <CustomerOriginatedTechnologyType>MsDotNet</CustomerOriginatedTechnologyType>
+          <CustomerOriginatedTxID>0</CustomerOriginatedTxID>
+          <CustomerOriginatedTxBatchNumber>0</CustomerOriginatedTxBatchNumber>
+          <EndUserBillingAddressCountry>US</EndUserBillingAddressCountry>
+          <EndUserBillingAddressSameAsShippingAddress>true</EndUserBillingAddressSameAsShippingAddress>
+          <InstructionType>Authorization</InstructionType>
+          <NumberOfTries>1</NumberOfTries>
+          <OperationType>Debit</OperationType>
+          <PaymentMethodType>CreditCard</PaymentMethodType>
+          <PaymentType>Regular</PaymentType>
+          <ProcessingType>Processing</ProcessingType>
+          <RequestType>Regular</RequestType>
+          <ScrubbingFlag>false</ScrubbingFlag>
+          <ServicePurchasedCategory>None</ServicePurchasedCategory>
+          <ServicePurchasedSubCategory>None</ServicePurchasedSubCategory>
+          <ServicePurchasedType>RegularTransaction</ServicePurchasedType>
+          <SkinID>2</SkinID>
+          <ThreeDSecureFlags>NoThreeD</ThreeDSecureFlags>
+          <TransactionCode>Internet</TransactionCode>
+          <TxRecurringBillingID>0</TxRecurringBillingID>
+          <UserLevelID>1</UserLevelID>
+          <WhiteListIndicator>false</WhiteListIndicator>
+          <% @dynamic_tags.each do |tag,val| %>
+          <<%= tag %>><%= val %></<%= tag %>>
+          <% end %>
+        </RegularTransactionRequestPacket>
+      </RegularTransaction>
+    </soap:Body>
+  </soap:Envelope>
