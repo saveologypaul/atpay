@@ -1,16 +1,9 @@
-# rdoc generated
 rdoc
-
-# yard generated
+.swp
 doc
 .yardoc
-
-# bundler
 .bundle
-
-# jeweler generated
 pkg
-
 .rvmrc
 Gemfile.lock
 .DS_Store
