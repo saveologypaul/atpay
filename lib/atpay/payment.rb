@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'crack'
 require 'httparty'
+require 'credit_card_validator'
 module ATPAY
   class Payment
     include HTTParty
