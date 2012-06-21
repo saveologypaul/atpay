@@ -25,7 +25,7 @@ Jeweler::Tasks.new do |gem|
   gem.summary = %Q{Atpay.net payment class}
   gem.description = %Q{Atpay.net payment class}
   gem.email = "devteam+pkruger+jtoyota@saveology.com"
-  gem.authors = ["Paul Kruger","Josh Toyota"]
+  gem.authors = ["Paul Kruger","Josh Toyota", "Dante Elrick", "Jon Turner"]
   gem.files.include 'lib/**/*'
   # dependencies defined in Gemfile
 end
