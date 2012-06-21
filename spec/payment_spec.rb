@@ -179,19 +179,21 @@ describe "Atpay" do
     end
   end
   describe "Payment with valid data" do
-    let(:username) { "ELEPHANTGROUP\\PaymentPageUser" }
-    let(:password) { 'cWC4uGSz' }
-    let(:host) { "http://transactions.saveology.com" }
+    let(:username) { ENV['ATPAY_USERNAME'] }
+    let(:password) { ENV['ATPAY_PASSWORD'] }
+    let(:host) { ENV['ATPAY_HOST'] }
+    let(:account_id) { ENV['ATPAY_TEST_ACCOUNT_ID'] }
+    let(:sub_account_id) { ENV['ATPAY_TEST_SUB_ACCOUNT_ID'] }
 
     let(:test_name_on_card) { 'Test User' }
     let(:test_card_number) { '4111111111111111' }
     let(:test_cvv) { '400' }
     let(:test_expiration_date) { '10/2013' }
 
-    let(:valid_name_on_card) { 'Test Delete' }
-    let(:valid_card_number) { '5569206000208533' }
-    let(:valid_cvv) { '752' }
-    let(:valid_expiration_date) { '0414' }
+    let(:valid_name_on_card) { ENV['ATPAY_VALID_NAME_ON_CARD'] }
+    let(:valid_card_number) { ENV['ATPAY_VALID_CARD_NUMBER'] }
+    let(:valid_cvv) { ENV['ATPAY_VALID_CARD_CVV'] }
+    let(:valid_expiration_date) { ENV['ATPAY_VALID_CARD_EXPIRE_DATE'] }
 
     let(:additional_params) {
        {
@@ -271,15 +273,11 @@ describe "Atpay" do
     end
     subject { ATPAY::Payment.new }
     it "valid request should return true with a transaction_id" do
-      #subject.username = username
-      #subject.password = password
-      #subject.host = host
       payment_options[:name_on_card] = valid_name_on_card
       payment_options[:number] = valid_card_number
       payment_options[:cvv] = valid_cvv
       payment_options[:expiration_date] = valid_expiration_date
       response = subject.charge(payment_options)
-      require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger; true  
       response.should be_true
       subject.transaction_id.should_not == ''
       subject.error.should == ''
