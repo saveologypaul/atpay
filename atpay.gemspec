@@ -5,28 +5,33 @@
 
 Gem::Specification.new do |s|
   s.name = "atpay"
-  s.version = "0.1.0"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Paul Kruger", "Josh Toyota"]
-  s.date = "2012-06-20"
+  s.authors = ["Paul Kruger", "Josh Toyota", "Dante Elrick", "Jon Turner"]
+  s.date = "2012-06-21"
   s.description = "Atpay.net payment class"
   s.email = "devteam+pkruger+jtoyota@saveology.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
     "Gemfile",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
+    "atpay.gemspec",
+    "config/development.example.yml",
     "lib/atpay.rb",
     "lib/atpay/payment.rb",
-    "test/helper.rb",
-    "test/test_atpay.rb"
+    "lib/atpay/request.xml.erb",
+    "lib/atpay/successful_response.html",
+    "spec/configure_spec.rb",
+    "spec/payment_spec.rb",
+    "spec/spec_helper.rb"
   ]
   s.homepage = "http://github.com/saveologypaul/atpay"
   s.licenses = ["MIT"]
@@ -40,7 +45,9 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<crack>, [">= 0"])
       s.add_runtime_dependency(%q<httparty>, [">= 0"])
-      s.add_development_dependency(%q<shoulda>, [">= 0"])
+      s.add_runtime_dependency(%q<credit_card_validator>, [">= 0"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
@@ -48,7 +55,9 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<crack>, [">= 0"])
       s.add_dependency(%q<httparty>, [">= 0"])
-      s.add_dependency(%q<shoulda>, [">= 0"])
+      s.add_dependency(%q<credit_card_validator>, [">= 0"])
+      s.add_dependency(%q<activesupport>, [">= 0"])
+      s.add_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
@@ -57,7 +66,9 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<crack>, [">= 0"])
     s.add_dependency(%q<httparty>, [">= 0"])
-    s.add_dependency(%q<shoulda>, [">= 0"])
+    s.add_dependency(%q<credit_card_validator>, [">= 0"])
+    s.add_dependency(%q<activesupport>, [">= 0"])
+    s.add_dependency(%q<rspec>, ["~> 2.8.0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
