@@ -2,6 +2,13 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "Atpay" do
   describe "Payment" do
+    before do
+      ATPAY.configure do |config|
+        config.username = username
+        config.password = password
+        config.host = host
+      end
+    end
     let(:username) { "testusername" }
     let(:password) { "testpassword" }
     let(:host) { "http://testhost.com" }
@@ -74,7 +81,7 @@ describe "Atpay" do
        :service_expiry_method_additional_info => ''
       }
     }
-    subject { ATPAY::Payment.new username, password, host }
+    subject { ATPAY::Payment.new }
     it "should initialize" do
       subject.username.should == username
       subject.password.should == password
@@ -142,7 +149,6 @@ describe "Atpay" do
       subject.account_id.should == '123'
       subject.sub_account_id.should == '234'
       subject.service_expiry_method.should == ''
-      require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger; true  
       subject.service_expiry_method_additional_info.should == ''
     end
     it "should accept a reccuring payment request" do

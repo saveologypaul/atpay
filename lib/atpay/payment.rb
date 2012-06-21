@@ -51,17 +51,16 @@ module ATPAY
     attr_accessor :success
     attr_accessor :transaction_id
     #internal
-    attr_accessor :org_options, :dynamic_tags, :xml
+    attr_accessor :error, :org_options, :dynamic_tags, :xml
 
-    def initialize(username, password, host)
-      @username = username
-      @password = password
-      @host = host
+    def initialize
+      @username = ATPAY.username
+      @password = ATPAY.password
+      @host = ATPAY.host
       @ip_address = '127.0.0.1'
-      @first_name = @last_name = @email = @address = @address2 = @city = @state = @zip = @phone = @name_on_card = @number = @credit_card_type = @cvv = @expiration_date = @free_text = @recurring_installment_interval_additional_info = @account_id = @sub_account_id = @service_expiry_method = @service_expiry_method_additional_info = @request = @response = @transaction_id = @org_options = @dynamic_tags = @xml = @order_id = ''
+      @error = @first_name = @last_name = @email = @address = @address2 = @city = @state = @zip = @phone = @name_on_card = @number = @credit_card_type = @cvv = @expiration_date = @free_text = @recurring_installment_interval_additional_info = @account_id = @sub_account_id = @service_expiry_method = @service_expiry_method_additional_info = @request = @response = @transaction_id = @org_options = @dynamic_tags = @xml = @order_id = ''
       @amount = @base_amount = @first_installment_amount = @initial_pre_auth_amount = @first_installment_interval = @recurring_amount = 0
-      @recurring_payment = false
-      @success = false
+      @recurring_payment = @success = false
       @recurring_installment_interval_method = 'Daily'
     end
 
@@ -133,14 +132,14 @@ module ATPAY
       @success = false
       result = {}
       begin
-        result = Crack::XML.parse(@http_response.body)['soap:Envelope']['soap:Body']['RegularTransactionResponse']['RegularTransactionResult']
+        result = Crack::XML.parse(@response.body)['soap:Envelope']['soap:Body']['RegularTransactionResponse']['RegularTransactionResult']
         @success = (result['SuccessFlag'] == 'true')
       rescue NoMethodError
       end
       if @success
-        @order.litle_confirmation = result['TransactionID']
+        @transaction_id = result['TransactionID']
       else
-        @order.errors.add(:base,"Sorry we were unable to process your card")
+        @error = "Sorry we were unable to process your card"
       end
     end
 
@@ -151,8 +150,8 @@ module ATPAY
         self.class.headers  'Content-Type' => 'text/xml; charset=utf-8',
                             'Content-Length' => @xml.length.to_s,
                             'SOAPAction' => 'http://transactions.atpay.net/webservices/ATPayTxWS/RegularTransaction'
-        @http_response = self.class.post(@url, :body => @xml)
-        puts @http_response.body
+        @response = self.class.post(@url, :body => @xml)
+        puts @response.body
       rescue => e
         puts e
       end
@@ -160,7 +159,7 @@ module ATPAY
 
     def render_xml
       @dynamic_tags = dynamic_tags
-      template = File.open('request.xml.erb', 'r').read
+      template = File.open('./lib/atpay/request.xml.erb', 'r').read
       ERB.new(template).result(binding)
     end
 
