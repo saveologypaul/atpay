@@ -110,7 +110,7 @@ describe "Atpay" do
       subject.first_installment_interval.should == 0
       subject.recurring_amount.should == 0
       subject.recurring_installment_interval_method.should == 'Daily'
-      subject.recurring_installment_interval_additional_info.should == ''
+      subject.recurring_installment_interval_method_additional_info.should == ''
       subject.account_id.should == ''
       subject.sub_account_id.should == ''
       subject.service_expiry_method.should == ''

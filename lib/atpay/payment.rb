@@ -40,7 +40,7 @@ module ATPAY
     attr_accessor :first_installment_interval
     attr_accessor :recurring_amount
     attr_accessor :recurring_installment_interval_method
-    attr_accessor :recurring_installment_interval_additional_info
+    attr_accessor :recurring_installment_interval_method_additional_info
     attr_accessor :account_id
     attr_accessor :sub_account_id
     attr_accessor :service_expiry_method
@@ -58,7 +58,7 @@ module ATPAY
       @password = ATPAY.password
       @host = ATPAY.host
       @ip_address = '127.0.0.1'
-      @error = @first_name = @last_name = @email = @address = @address2 = @city = @state = @zip = @phone = @name_on_card = @number = @credit_card_type = @cvv = @expiration_date = @free_text = @recurring_installment_interval_additional_info = @account_id = @sub_account_id = @service_expiry_method = @service_expiry_method_additional_info = @request = @response = @transaction_id = @org_options = @dynamic_tags = @xml = @order_id = ''
+      @error = @first_name = @last_name = @email = @address = @address2 = @city = @state = @zip = @phone = @name_on_card = @number = @credit_card_type = @cvv = @expiration_date = @free_text = @recurring_installment_interval_method_additional_info = @account_id = @sub_account_id = @service_expiry_method = @service_expiry_method_additional_info = @request = @response = @transaction_id = @org_options = @dynamic_tags = @xml = @order_id = ''
       @amount = @base_amount = @first_installment_amount = @initial_pre_auth_amount = @first_installment_interval = @recurring_amount = 0
       @recurring_payment = @success = false
       @recurring_installment_interval_method = 'Daily'
@@ -166,43 +166,43 @@ module ATPAY
 
     def dynamic_tags
       tags = {
-        'Amount' => @amount,
-        'BaseAmount' => @base_amount,
-        'CreditCardCVV2' => @cvv,
-        'CreditCardExpirationDate' => @expiration_date,
-        'CreditCardNameOnCard' => @name_on_card,
-        'CreditCardNumber' => @number,
+        'Amount' => amount,
+        'BaseAmount' => base_amount,
+        'CreditCardCVV2' => cvv,
+        'CreditCardExpirationDate' => expiration_date,
+        'CreditCardNameOnCard' => name_on_card,
+        'CreditCardNumber' => number,
         'CreditCardType' => credit_card_type,
         'CustomerDateTime' => Time.now.iso8601,
-        'EndUserBillingAddressPhoneNumber1' => @phone,
-        'EndUserBillingAddressNumber' => @address,
-        'EndUserBillingAddressStreet' => @address2,
-        'EndUserBillingAddressCity' => @city,
-        'EndUserBillingAddressState' => @state,
-        'EndUserBillingAddressZipPostalCode' => @zip,
-        'EndUserEmailAddress' => @email,
-        'EndUserFirstName' => @first_name,
-        'EndUserIPAddress' => @ip_address,
-        'EndUserLastName' => @last_name,
-        'MerchantFreeText' => @free_text,
-        'AccountID' => @account_id,
-        'SubAccountID' => @sub_account_id,
-        'ServiceExpiryMethod' => @service_expiry_method,
-        'ServiceExpiryMethodAdditionalInfo' => @service_expiry_method_additional_info,
+        'EndUserBillingAddressPhoneNumber1' => phone,
+        'EndUserBillingAddressNumber' => address,
+        'EndUserBillingAddressStreet' => address2,
+        'EndUserBillingAddressCity' => city,
+        'EndUserBillingAddressState' => state,
+        'EndUserBillingAddressZipPostalCode' => zip,
+        'EndUserEmailAddress' => email,
+        'EndUserFirstName' => first_name,
+        'EndUserIPAddress' => ip_address,
+        'EndUserLastName' => last_name,
+        'MerchantFreeText' => free_text,
+        'AccountID' => account_id,
+        'SubAccountID' => sub_account_id,
+        'ServiceExpiryMethod' => service_expiry_method,
+        'ServiceExpiryMethodAdditionalInfo' => service_expiry_method_additional_info,
       }
       recurring_tags = {
         true => {
-          'RecurringBillingFlag' => @recurring_payment,
-          'FirstInstallmentAmount' => @first_installment_amount,
-          'InitialPreAuthAmount' =>  @initial_pre_auth_amount,
-          'FirstInstallmentInterval' => @first_installment_interval,
-          'RecurringAmount' => @recurring_amount,
-          'RecurringInstallmentIntervalMethod' => @recurring_installment_interval_method,
-          'RecurringInstallmentIntervalMethodAdditionalInfo' => @recurring_installment_interval_method_additional_info,
+          'RecurringBillingFlag' => recurring_payment,
+          'FirstInstallmentAmount' => first_installment_amount,
+          'InitialPreAuthAmount' =>  initial_pre_auth_amount,
+          'FirstInstallmentInterval' => first_installment_interval,
+          'RecurringAmount' => recurring_amount,
+          'RecurringInstallmentIntervalMethod' => recurring_installment_interval_method,
+          'RecurringInstallmentIntervalMethodAdditionalInfo' => recurring_installment_interval_method_additional_info,
         },
 
         false => {
-          'RecurringBillingFlag' => @recurring_payment,
+          'RecurringBillingFlag' => recurring_payment,
           'FirstInstallmentAmount' => 0,
           'InitialPreAuthAmount' => 0,
           'FirstInstallmentInterval' => 0,
