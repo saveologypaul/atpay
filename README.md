@@ -2,7 +2,7 @@
 
 Atpay.net Payment Class.
 
-#/config/initializers/atpay.rb
+/config/initializers/atpay.rb
 
 ```ruby
 ATPAY.configure do |config|
