@@ -25,3 +25,5 @@ end
 
 Copyright (c) 2012 Paul Kruger. See LICENSE.txt for further details.
 
+Thanks to Josh TOYOTA for the origional class
+Thanks to i♆Sir Dante Elrik(theInferno)♆ the  for the configuration and module support
