@@ -4,12 +4,13 @@ Atpay.net Payment Class.
 
 #load this in an initializer
 
-ATPAY.configure do |config|                                                                         |    attr_accessor :phone                                                                                 |    yield(self)                                                                                          
-  config.username = 'username'                                                                      |    attr_accessor :ip_address                                                                            |  end                                                                                                    
-  config.password = 'password'                                                                      |    #card info                                                                                           |end                                                                                                      
-  config.host = 'http://test.com'                                                                   |    attr_accessor :name_on_card                                                                          |~                                                                                                        
+```ruby
+ATPAY.configure do |config|
+  config.username = 'username'
+  config.password = 'password'
+  config.host = 'http://test.com'
 end
-
+```
 == Contributing to Atpay
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
@@ -22,6 +23,5 @@ end
 
 == Copyright
 
-Copyright (c) 2012 Paul Kruger. See LICENSE.txt for
-further details.
+Copyright (c) 2012 Paul Kruger. See LICENSE.txt for further details.
 
