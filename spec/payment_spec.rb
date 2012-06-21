@@ -13,6 +13,8 @@ describe "Atpay" do
     let(:username) { ENV['ATPAY_USERNAME'] }
     let(:password) { ENV['ATPAY_PASSWORD'] }
     let(:host) { ENV['ATPAY_HOST'] }
+    let(:account_id) { ENV['ATPAY_TEST_ACCOUNT_ID'] }
+    let(:sub_account_id) { ENV['ATPAY_TEST_SUB_ACCOUNT_ID'] }
     let(:invalid_username) { "testusername" }
     let(:invalid_password) { "testpassword" }
 
@@ -55,8 +57,8 @@ describe "Atpay" do
        :phone => '5554443434',
        :ip_address => '10.10.10.22',
        :amount => 10.00,
-       :account_id => '123',
-       :sub_account_id => '234',
+       :account_id => account_id,
+       :sub_account_id => sub_account_id,
        :service_expiry_method => '',
        :service_expiry_method_additional_info => ''
       }
@@ -89,8 +91,8 @@ describe "Atpay" do
        :first_installment_interval => 0,
        :recurring_installment_interval_method => 'Daily',
        :recurring_installment_interval_additional_info => '',
-       :account_id => '',
-       :sub_account_id => '',
+       :account_id => account_id,
+       :sub_account_id => sub_account_id,
        :service_expiry_method => '',
        :service_expiry_method_additional_info => ''
       }
@@ -160,8 +162,8 @@ describe "Atpay" do
       subject.phone.should == '5554443434'
       subject.ip_address.should == '10.10.10.22'
       subject.amount.should == 10.00
-      subject.account_id.should == '123'
-      subject.sub_account_id.should == '234'
+      subject.account_id.should == account_id
+      subject.sub_account_id.should == sub_account_id
       subject.service_expiry_method.should == ''
       subject.service_expiry_method_additional_info.should == ''
     end
@@ -220,8 +222,8 @@ describe "Atpay" do
        :phone => '5554443434',
        :ip_address => '10.10.10.22',
        :amount => 10.00,
-       :account_id => '190',
-       :sub_account_id => '3',
+       :account_id => account_id,
+       :sub_account_id => sub_account_id,
        :service_expiry_method => 'NoEndDate',
        :service_expiry_method_additional_info => ''
       }
@@ -254,8 +256,8 @@ describe "Atpay" do
        :first_installment_interval => 0,
        :recurring_installment_interval_method => 'Daily',
        :recurring_installment_interval_additional_info => '',
-       :account_id => '190',
-       :sub_account_id => '3',
+       :account_id => account_id,
+       :sub_account_id => sub_account_id,
        :service_expiry_method => 'NoEndDate',
        :service_expiry_method_additional_info => ''
       }
