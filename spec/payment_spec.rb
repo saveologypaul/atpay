@@ -273,15 +273,11 @@ describe "Atpay" do
     end
     subject { ATPAY::Payment.new }
     it "valid request should return true with a transaction_id" do
-      #subject.username = username
-      #subject.password = password
-      #subject.host = host
       payment_options[:name_on_card] = valid_name_on_card
       payment_options[:number] = valid_card_number
       payment_options[:cvv] = valid_cvv
       payment_options[:expiration_date] = valid_expiration_date
       response = subject.charge(payment_options)
-      require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger; true  
       response.should be_true
       subject.transaction_id.should_not == ''
       subject.error.should == ''
