@@ -10,8 +10,8 @@ describe "Atpay" do
       end
     end
     let(:successful_response){ File.open(File::dirname(__FILE__) << './lib/successful_response','r').read }
-    let(:username) { ENV['ATPAY_USERNAME' }
-    let(:password) { ENV['ATPAY_PASSWORD' }
+    let(:username) { ENV['ATPAY_USERNAME'] }
+    let(:password) { ENV['ATPAY_PASSWORD'] }
     let(:host) { ENV['ATPAY_HOST'] }
     let(:invalid_username) { "testusername" }
     let(:invalid_password) { "testpassword" }
