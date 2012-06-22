@@ -171,7 +171,7 @@ module ATPAY
 
     def render_xml
       @dynamic_tags = dynamic_tags
-      template = File.open('./lib/atpay/request.xml.erb', 'r').read
+      template = File.open(File.dirname(__FILE__)+'/request.xml.erb', 'r').read
       ERB.new(template).result(binding)
     end
 
