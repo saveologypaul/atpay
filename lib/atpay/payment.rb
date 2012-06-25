@@ -158,14 +158,14 @@ module ATPAY
     def fire_payment_request
       begin
         @request = @xml = render_xml
-        #puts @xml
+        puts @xml
         self.class.headers  'Content-Type' => 'text/xml; charset=utf-8',
                             'Content-Length' => @xml.length.to_s,
                             'SOAPAction' => soap_action
         @response = self.class.post(url, :body => @xml)
-        #puts @response.body
+        puts @response.body
       rescue => e
-        #puts e
+        puts e
       end
     end
 
