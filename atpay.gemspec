@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Paul Kruger", "Josh Toyota", "Dante Elrick", "Jon Turner"]
-  s.date = "2012-06-25"
+  s.date = "2012-06-28"
   s.description = "Atpay.net payment class"
   s.email = "devteam+pkruger+jtoyota@saveology.com"
   s.extra_rdoc_files = [
